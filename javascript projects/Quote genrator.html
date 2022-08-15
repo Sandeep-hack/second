@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quote</title>
+</head>
+<body>
+    <h1>Quote genrator</h1>
+    <div id="quoteDisplay">
+        <!-- quote will displayhere -->
+    </div>
+    <button onclick="newQuote()">newQuote</button>
+
+    <!-- concepts
+    1) Quotes are multiple strings that need to be stored in an array.
+    2) Every time the button gets pressed, a random whole number needs to be generated.
+    3) The number will be used as a representation of the array index number for the quote array.
+    4) Once we retrieve the randomly picked quote from the array using our randomly generated whole number,  we        will place it to the HTML document. -->
+
+    <script>
+            // <!-- Since we know that we will have multiple quotes, and each one will be picked out randomly, the best choice would be to store multiple strings within an array. -->
+        var quotes =["We become what we think about Earl Nightingale",        
+        "People who are crazy enough to think they can change the world, are the ones who do.- Rob Siltanen",
+        "Optimism is the one quality more associated with success and happiness than any other.- Brian Tracy",  "“Happiness is not something readymade. It comes from your own actions.”-Dalai Lama", "“Success is not final, failure is not fatal: it is the courage to continue that counts.” Winston Churchill", "“Believe you can and you’re halfway there.” Theodore Roosevelt", "“All our dreams can come true if we have the courage to pursue them.”- Walt Disney" ]
+
+        // First, we call the Math.floor() function => The Math.floor() function takes in a parameter and rounds    the number downward to the nearest integer. For example, if we call Math.floor(5.7) it will return 5.
+
+        // Second, we will pass in Math.random() as a parameter into Math.floor(). The Math.random() function will generate a random decimal number between 0 and 1.
+
+        // If we console log our randomNumber at this state, it will always return 0. This is because Math.random() will always be a decimal between 0 and 1 such as 0.4, 0.721, 0.98, and so on. Because we pass Math.random() into Math.floor() as a parameter, Math.floor() is always rounding down to the nearest decimal, therefore, every decimal between 0 and 1 will always revert back to 0.
+        
+        function newQuote(){
+            // To solve this problem, we need to only multiply Math.random() with the length of our quotes array. By doing this, we can add or remove as many strings from the array as we like and our randomNumber variable will always return a valid number since we are using the quotes.length method to always get the current length of our array.
+            // var randomNumber = Math.floor(Math.random() * 20);
+            // A randomly generated decimal multiplied by 20, then rounded down to the nearest whole number
+
+            var randomNumber = Math.floor(Math.random() * (quotes.length));
+
+            // Using document.getElementById() we can pass in any string and JavaScript will look through our HTML document and retrieve it for use to do whatever we want with it. We will pass in ‘quoteDisplay’ as a parameter to retrieve the HTML element with the id of “quoteDisplay”.
+
+            document.getElementById('quoteDisplay').innerHTML = quotes[randomNumber];
+        }
+    </script>
+    
+</body>
+</html>
